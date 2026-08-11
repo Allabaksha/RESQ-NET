@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { Agency, Incident, DashboardSummary, User } from '../types';
 
-const API_BASE = '/api';
+// Fall back to '/api' (Vite dev proxy); set VITE_API_BASE to your deployed
+// backend URL (e.g. https://your-app.onrender.com/api) when deploying.
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 
 const api = axios.create({
   baseURL: API_BASE,

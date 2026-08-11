@@ -13,8 +13,9 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [connected, setConnected] = useState<boolean>(false);
 
   useEffect(() => {
-    // Connect socket
-    const socketInstance = io(window.location.origin, {
+    // Connect socket. Set VITE_SOCKET_URL to your deployed backend URL when
+    // deploying; otherwise use same-origin (Vite dev proxy handles /socket.io).
+    const socketInstance = io(import.meta.env.VITE_SOCKET_URL || window.location.origin, {
       transports: ['websocket', 'polling']
     });
 
